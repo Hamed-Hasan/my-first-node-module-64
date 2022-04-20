@@ -66,7 +66,7 @@ const express = require('express')
 const app = express()
 const port = process.env.port || 5000
 
-// node express display call 
+// node express display send 
 app.get('/',(req, res) => {
     res.send('Welcome back !!')
 })
@@ -77,7 +77,7 @@ app.get('/user',(req, res) => {
     res.send(user)
 })
 
-// node express call with array object search multiple
+// node express send with array object search multiple
 const users = [
     {id: 1, name: 'hamed',age:24, email: 'hamed@example.com',phone: 999},
     {id: 1, name: 'hasan',age:22, email: 'hasan@example.com',phone: 999},
@@ -92,14 +92,24 @@ const users = [
 // http://localhost:5000/array?name=f&email= search path
 app.get('/array',(req, res) => {
     if(req.query.name){
+        console.log(req.query)
         const search = req.query.name.toLowerCase()
         const match = users.filter(user => user.name.toLowerCase().includes(search))
         res.send(match)
     }else{
         res.send(users)
     }
-    
 })
+
+// node express send with object 
+app.get('/obj',(req, res) => {
+    res.send({name: 'john',address: 'usa'})
+})
+
+// node express send with dynamic id search with params 
+
+
+
 app.listen(port, () => {
     console.log('That is app listening on port',port);
 })
