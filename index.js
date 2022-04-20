@@ -63,7 +63,11 @@
 
 // node express setup 
 const express = require('express')
+let cors = require("cors") // when i fetch an dynamic back end array data: npm i cors & use this package and use tow cLi 
 const app = express()
+app.use(cors())  // when i fetch an dynamic back end array data: npm i cors & use this package and use tow cLi 
+app.use(express.urlencoded({extended: true}));
+app.use(express.json()) // To parse the incoming requests with JSON payloads
 const port = process.env.port || 5000
 
 // node express display send 
@@ -114,6 +118,11 @@ app.get('/dynamic/:dynamicId',(req, res) => {
     res.send(arrayUser)
 })
 
+// get data from frontend 
+app.post('/postdata',(req, res) => {
+    console.log(req.body);
+    res.send('send post successfully')
+})
 
 app.listen(port, () => {
     console.log('That is app listening on port',port);
