@@ -79,17 +79,27 @@ app.get('/user',(req, res) => {
 
 // node express call with array object search multiple
 const users = [
-    {id: 1, name: 'hamed',age:24,phone: 999},
-    {id: 1, name: 'hasan',age:22,phone: 999},
-    {id: 1, name: 'hamas',age:20,phone: 999},
-    {id: 2, name: 'rifa',age:28,phone: 999},
-    {id: 3, name: 'alifa',age:14,phone: 999},
-    {id: 4, name: 'sayed',age:18,phone: 999},
-    {id: 5, name: 'huma',age:20,phone: 999},
-    {id: 6, name: 'afi',age:10,phone: 999},
-    {id: 6, name: 'afifa',age:12,phone: 999},
+    {id: 1, name: 'hamed',age:24, email: 'hamed@example.com',phone: 999},
+    {id: 1, name: 'hasan',age:22, email: 'hasan@example.com',phone: 999},
+    {id: 1, name: 'hamas',age:20, email: 'hamas@example.com',phone: 999},
+    {id: 2, name: 'rifa',age:28, email: 'rifa@example.com',phone: 999},
+    {id: 3, name: 'alifa',age:14, email: 'alifa@example.com',phone: 999},
+    {id: 4, name: 'sayed',age:18, email: 'sayed@example.com',phone: 999},
+    {id: 5, name: 'huma',age:20, email: 'huma@example.com',phone: 999},
+    {id: 6, name: 'afi',age:10, email: 'afi@example.com',phone: 999},
+    {id: 6, name: 'afifa',age:12, email: 'afifa@example.com',phone: 999},
 ]
-
+// http://localhost:5000/array?name=f&email= search path
+app.get('/array',(req, res) => {
+    if(req.query.name){
+        const search = req.query.name.toLowerCase()
+        const match = users.filter(user => user.name.toLowerCase().includes(search))
+        res.send(match)
+    }else{
+        res.send(users)
+    }
+    
+})
 app.listen(port, () => {
     console.log('That is app listening on port',port);
 })
