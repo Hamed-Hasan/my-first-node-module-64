@@ -68,8 +68,27 @@ const port = process.env.port || 5000
 
 // node express display call 
 app.get('/',(req, res) => {
-    res.send('Welcome back')
+    res.send('Welcome back !!')
 })
+
+// node express call with object
+app.get('/user',(req, res) => {
+    const user = {id:1, name:'hamed',age:24,phone: 999}
+    res.send(user)
+})
+
+// node express call with array object search multiple
+const users = [
+    {id: 1, name: 'hamed',age:24,phone: 999},
+    {id: 1, name: 'hasan',age:22,phone: 999},
+    {id: 1, name: 'hamas',age:20,phone: 999},
+    {id: 2, name: 'rifa',age:28,phone: 999},
+    {id: 3, name: 'alifa',age:14,phone: 999},
+    {id: 4, name: 'sayed',age:18,phone: 999},
+    {id: 5, name: 'huma',age:20,phone: 999},
+    {id: 6, name: 'afi',age:10,phone: 999},
+    {id: 6, name: 'afifa',age:12,phone: 999},
+]
 
 app.listen(port, () => {
     console.log('That is app listening on port',port);
