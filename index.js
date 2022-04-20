@@ -107,7 +107,12 @@ app.get('/obj',(req, res) => {
 })
 
 // node express send with dynamic id search with params 
-
+app.get('/dynamic/:dynamicId',(req, res) => {
+    console.log(req.params);
+    const dynamicId = parseInt(req.params.dynamicId)
+    const arrayUser = users.find(user => user.id === dynamicId)
+    res.send(arrayUser)
+})
 
 
 app.listen(port, () => {
